@@ -71,7 +71,7 @@
 
                         <div class="clearfix"></div>
 
-                        <div class="row">
+                        <div class="row" id = "productDiv">
 
                             <c:forEach items="${requestScope.products}" var="item" begin="1" end="9">
                                 <div class="col-md-4 col-sm-6">

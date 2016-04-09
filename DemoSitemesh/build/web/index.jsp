@@ -17,7 +17,7 @@
     <body>
 
         <div class="items">
-            <div class="container">
+            <div class="container"  id="productDiv">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="title">HOT</h3>
