@@ -5,28 +5,24 @@
  */
 package com.demo.servlet;
 
-import com.assignment.dao.DeviceDAO;
-import com.demo.device.Device;
-import com.demo.device.Devices;
+import com.demo.order.Cart;
+import com.demo.order.OrderDetails;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Gunner
  */
-public class SearchNameServlet extends HttpServlet {
+public class ViewCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,24 +38,31 @@ public class SearchNameServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String txtSearch = request.getParameter("txtSearch");
-            DeviceDAO deviceDAO = new DeviceDAO();
-            List<Device> result = deviceDAO.searchlike(txtSearch);
-            Devices devices = new Devices();
-            for (Device device : result) {
-                devices.getDevice().add(device);
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                String detailOrd = "";
+                Cart cart = (Cart) session.getAttribute("Cart");
+                if (cart != null) {
+                    HashMap items = cart.getCart();
+                    Iterator iter = items.entrySet().iterator();
+                    while (iter.hasNext()) {
+                        Map.Entry item = (Map.Entry) iter.next();
+                        OrderDetails orderDetail = (OrderDetails) item.getValue();
+                        detailOrd = detailOrd+"<orderdetail>"+"<deviceName>"+orderDetail.getDeviceName()+"</deviceName>\n"+
+                                "<quantity>"+orderDetail.getQuantity()+"</quantity>\n"+
+                                "<price>"+orderDetail.getPrice()+"</price>"+
+                                "<totalPrice>"+orderDetail.getTotalPrice()+"</totalPrice>"+"</orderdetail>";
+                    }
+                    String xmlResponse = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+
+                            "<order>"+
+                            detailOrd+
+                            "</order>";
+                    response.setContentType("text/xml");
+                    out= response.getWriter();
+                    out.write(xmlResponse);
+                }
             }
-            JAXBContext jxbCtx = JAXBContext.newInstance("com.demo.device");
-            Marshaller marshal = jxbCtx.createMarshaller();
-            marshal.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            StringWriter stringWriter = new StringWriter();
-            marshal.marshal(devices, stringWriter);
-            response.setContentType("text/xml");
-            out = response.getWriter();
-            out.write(stringWriter.toString());
-
-        } catch (JAXBException ex) {
-            Logger.getLogger(SearchNameServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

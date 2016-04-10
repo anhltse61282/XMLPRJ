@@ -19,19 +19,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CenterServlet extends HttpServlet {
 
-    private static String filterServlet ="FilterServlet";
-    private static String viewServlet ="ViewServlet";
-    private static String filterNameServlet ="FilterNameServlet";
-     private static String searchNameServlet ="SearchNameServlet";
-            /**
-             * Processes requests for both HTTP <code>GET</code> and
-             * <code>POST</code> methods.
-             *
-             * @param request servlet request
-             * @param response servlet response
-             * @throws ServletException if a servlet-specific error occurs
-             * @throws IOException if an I/O error occurs
-             */
+    private static String filterServlet = "FilterServlet";
+    private static String viewServlet = "ViewServlet";
+    private static String filterNameServlet = "FilterNameServlet";
+    private static String searchNameServlet = "SearchNameServlet";
+    private static String addCartServlet = "AddToCart";
+    private static String viewCartServlet = "ViewCartServlet";
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,14 +45,20 @@ public class CenterServlet extends HttpServlet {
             if (button.equals("filter")) {
                 RequestDispatcher rd = request.getRequestDispatcher(filterServlet);
                 rd.forward(request, response);
-            }else if (button.equals("View")) {
+            } else if (button.equals("View")) {
                 RequestDispatcher rd = request.getRequestDispatcher(viewServlet);
                 rd.forward(request, response);
-            }else if (button.equals("filterName")) {
+            } else if (button.equals("filterName")) {
                 RequestDispatcher rd = request.getRequestDispatcher(filterNameServlet);
                 rd.forward(request, response);
-            }else if (button.equals("Search")) {
+            } else if (button.equals("Search")) {
                 RequestDispatcher rd = request.getRequestDispatcher(searchNameServlet);
+                rd.forward(request, response);
+            }else if (button.equals("Addtocart")) {
+                RequestDispatcher rd = request.getRequestDispatcher(addCartServlet);
+                rd.forward(request, response);
+            }else if (button.equals("ViewCart")) {
+                RequestDispatcher rd = request.getRequestDispatcher(viewCartServlet);
                 rd.forward(request, response);
             }
         } finally {

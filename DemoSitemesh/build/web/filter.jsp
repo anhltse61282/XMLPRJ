@@ -16,7 +16,7 @@
         </head>
         <body>
             <div class="items">
-                <div class="container" id="content">
+                <div class="container" id = "productDiv"">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 hidden-xs">
 
@@ -71,7 +71,7 @@
 
                         <div class="clearfix"></div>
 
-                        <div class="row" id = "productDiv">
+                        <div class="row" >
 
                             <c:forEach items="${requestScope.products}" var="item" begin="1" end="9">
                                 <div class="col-md-4 col-sm-6">
@@ -103,7 +103,7 @@
                                                 <fmt:setLocale value="en_US"/>
                                                 <div class="item-price pull-left"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</div>
                                                 <!-- Add to cart -->
-                                                <div class="button pull-right"><a href="#">Add to Cart</a></div>
+                                                <div class="button pull-right"><a href="#" name="addtocart" onclick="addcart(${item.id})" id ="${item.id}">Add to Cart</a></div>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>

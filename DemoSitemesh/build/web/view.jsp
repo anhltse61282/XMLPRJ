@@ -16,7 +16,7 @@
     <body>
         <!-- Items -->
         <div class="items">
-            <div class="container">
+            <div class="container" id="productDiv">
                 <div class="row">
 
                     <!-- Sidebar -->
@@ -47,7 +47,7 @@
 
                     <!-- Main content -->
 
-                    <div class="col-md-9 col-sm-9" id="productDiv">
+                    <div class="col-md-9 col-sm-9" >
 
                         <!-- Breadcrumbs -->
                         <ul class="breadcrumb">
