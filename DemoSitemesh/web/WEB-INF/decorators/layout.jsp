@@ -224,7 +224,7 @@
                     <div class="col-md-4 col-md-offset-4">
 
                         <!-- Search form -->
-                        <form role="form" method="Get" action="CenterServlet">
+                        <form role="form">
                             <div class="input-group">
                                 <input type="text" class="form-control" id="txtSearch" placeholder="Search">
                                 <span class="input-group-btn">
