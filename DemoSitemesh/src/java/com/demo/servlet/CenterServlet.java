@@ -26,6 +26,7 @@ public class CenterServlet extends HttpServlet {
     private static String addCartServlet = "AddToCart";
     private static String viewCartServlet = "ViewCartServlet";
     private static String removeCartServlet = "RemoveCartServlet";
+    private static String checkOutServlet = "CheckOutServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,6 +63,9 @@ public class CenterServlet extends HttpServlet {
                 rd.forward(request, response);
             }else if (button.equals("ViewCart")) {
                 RequestDispatcher rd = request.getRequestDispatcher(viewCartServlet);
+                rd.forward(request, response);
+            }else if (button.equals("Checkout")) {
+                RequestDispatcher rd = request.getRequestDispatcher(checkOutServlet);
                 rd.forward(request, response);
             }
         } finally {

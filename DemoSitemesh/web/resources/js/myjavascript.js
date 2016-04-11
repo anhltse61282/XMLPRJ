@@ -3,6 +3,73 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+function radiohandler() {
+    var ex1 = document.querySelector('input[name = "rdLogin"]:checked').value;
+    var form = document.getElementById("formAuth");
+    if (ex1 == "newCus") {
+        form.innerHTML = "<h4 class='title'>Create new Account</h4>" +
+                "<div class='form'>" +
+                "<form class='form-horizontal'>" +
+                "<div class='form-group'>" +
+                "<label class='control-label col-md-3' for='username2'>Username</label>" +
+                "<div class='col-md-8'>" +
+                "<input type='text' class='form-control' id='username2'>" +
+                "</div>" +
+                "</div>" +
+                "<!-- Password -->" +
+                " <div class='form-group'>" +
+                "<label class='control-label col-md-3' for='password2'>Password</label>" +
+                "<div class='controls col-md-8'>" +
+                "<input type='password' class='form-control' id='password2'>" +
+                "</div>" +
+                "</div>" +
+                " <div class='form-group'>" +
+                "<label class='control-label col-md-3' for='password2'>Nhập lại</label>" +
+                "<div class='controls col-md-8'>" +
+                "<input type='password' class='form-control' id='password2'>" +
+                "</div>" +
+                "</div>" +
+                "<div class='form-group'>" +
+                "<div class='col-md-8 col-md-offset-3'>" +
+                "<button type='submit' class='btn btn-danger'>Register</button>" +
+                "<button type='reset' class='btn btn-default'>Reset</button>" +
+                "</div>" +
+                "</div></form></div>";
+    } else {
+        form.innerHTML =
+                "<h4 class='title'>Login to Your Account</h4>" +
+                "<div class='form'>" +
+                "<form class='form-horizontal'>" +
+                "<div class='form-group'>" +
+                "<label class='control-label col-md-3' for='username2'>Username</label>" +
+                "<div class='col-md-8'>" +
+                "<input type='text' class='form-control' id='username2'>" +
+                "</div>" +
+                "</div>" +
+                "<!-- Password -->" +
+                " <div class='form-group'>" +
+                "<label class='control-label col-md-3' for='password2'>Password</label>" +
+                "<div class='controls col-md-8'>" +
+                "<input type='password' class='form-control' id='password2'>" +
+                "</div>" +
+                "</div>" +
+                "<!-- Checkbox -->" +
+                " <div class='form-group'>" +
+                "<div class='col-md-8 col-md-offset-3'>" +
+                "<label class='checkbox-inline'>" +
+                "<input type='checkbox' id='inlineCheckbox3' value='agree'> Remember Password" +
+                "</label>" +
+                "</div>" +
+                "</div>" +
+                "<div class='form-group'>" +
+                "<div class='col-md-8 col-md-offset-3'>" +
+                "<button type='submit' class='btn btn-danger'>Login</button>" +
+                "<button type='reset' class='btn btn-default'>Reset</button>" +
+                "</div>" +
+                "</div></form></div>";
+    }
+}
 var httpRequest;
 function searchByName() {
 
@@ -70,7 +137,7 @@ function responseSearchHandler() {
                                 " <div class='clearfix'></div>" +
                                 "<hr />" +
                                 "<div class='item-price pull-left'>" + formatNumber(price) + 'đ' + "</div>" +
-                                "<div class='button pull-right'><a href='#'>Add to Cart</a></div>" +
+                                "<div class='button pull-right'><a href='#' onclick='addcart(" + productID.trim() + ")'>Add to Cart</a></div>" +
                                 "<div class='clearfix'></div>" +
                                 "</div>" + " </div>" + " </div> ";
 //                alert(result);
@@ -235,12 +302,12 @@ function responseRemoveCartHandler() {
             var response = httpRequest.responseText;
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(response, "text/xml");
-            
+
             var details = xmlDoc.getElementsByTagName("order")[0].childNodes;
             var result = "";
             var sizeCart = xmlDoc.getElementsByTagName("order")[0].getAttribute("size");
             var totalprice = xmlDoc.getElementsByTagName("order")[0].getAttribute("total");
-            
+
             var totalOrder = 0;
             var count = 0;
             for (var i = 0; i < details.length; i++) {
@@ -296,7 +363,7 @@ function responseRemoveCartHandler() {
                 }
             }
             var cartTabl = document.getElementById("cartView");
-            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder) 
+            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
                     + " VND" + "</th>" + "<th></th></tr>";
             var cartDetail = document.getElementById("cartDetail");
             cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +

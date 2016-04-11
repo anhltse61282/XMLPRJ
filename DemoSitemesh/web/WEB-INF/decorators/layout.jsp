@@ -76,8 +76,8 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="index.html" class="btn">Tiếp tực mua sắm</a>
-                        <a href="checkout.html" class="btn btn-danger">Thanh Toán</a>
+                        <a href="./" class="btn">Tiếp tực mua sắm</a>
+                        <a href="./CenterServlet?btnAction=Checkout" class="btn btn-danger">Thanh Toán</a>
                     </div>
                 </div>
             </div>
