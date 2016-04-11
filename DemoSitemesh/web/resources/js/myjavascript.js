@@ -9,8 +9,8 @@ function radiohandler() {
     var form = document.getElementById("formAuth");
     if (ex1 == "newCus") {
         form.innerHTML = "<h4 class='title'>Create new Account</h4>" +
-                "<div class='form'>" +
-                "<form class='form-horizontal'>" +
+                "<div class='form' >" +
+                "<form class='form-horizontal' method='Post' action='CenterServlet'>" +
                 "<div class='form-group'>" +
                 "<label class='control-label col-md-3' for='username2'>Username</label>" +
                 "<div class='col-md-8'>" +
@@ -32,14 +32,14 @@ function radiohandler() {
                 "</div>" +
                 "<div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
-                "<button type='submit' class='btn btn-danger'>Register</button>" +
+                "<button type='submit' class='btn btn-danger' name='btnAction' value='Register'>Register</button>" +
                 "<button type='reset' class='btn btn-default'>Reset</button>" +
                 "</div>" +
                 "</div></form></div>";
     } else {
         form.innerHTML =
                 "<h4 class='title'>Login to Your Account</h4>" +
-                "<div class='form'>" +
+                "<div class='form' method='Post' action='CenterServlet'>" +
                 "<form class='form-horizontal'>" +
                 "<div class='form-group'>" +
                 "<label class='control-label col-md-3' for='username2'>Username</label>" +
@@ -64,7 +64,7 @@ function radiohandler() {
                 "</div>" +
                 "<div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
-                "<button type='submit' class='btn btn-danger'>Login</button>" +
+                "<button type='submit' class='btn btn-danger' name='btnAction' value='Login'>Login</button>" +
                 "<button type='reset' class='btn btn-default'>Reset</button>" +
                 "</div>" +
                 "</div></form></div>";
