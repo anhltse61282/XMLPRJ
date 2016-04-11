@@ -49,7 +49,7 @@ public class ViewCartServlet extends HttpServlet {
                     while (iter.hasNext()) {
                         Map.Entry item = (Map.Entry) iter.next();
                         OrderDetails orderDetail = (OrderDetails) item.getValue();
-                        detailOrd = detailOrd+"<orderdetail>"+"<deviceName>"+orderDetail.getDeviceName()+"</deviceName>\n"+
+                        detailOrd = detailOrd+"<orderdetail>"+"<id>"+orderDetail.getId()+"</id>"+"<deviceName>"+orderDetail.getDeviceName()+"</deviceName>\n"+
                                 "<quantity>"+orderDetail.getQuantity()+"</quantity>\n"+
                                 "<price>"+orderDetail.getPrice()+"</price>"+
                                 "<totalPrice>"+orderDetail.getTotalPrice()+"</totalPrice>"+"</orderdetail>";

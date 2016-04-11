@@ -60,7 +60,12 @@
                             <div class="input-group">
                                 <input type="text" class="form-control input-sm" value="2"/>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default btn-sm" type="button">Add to Cart</button>
+                                    <button class="btn btn-default btn-sm" type="button">
+                                        <xsl:attribute name="onclick">
+                                            addcart(<xsl:value-of select="id" />)
+                                        </xsl:attribute>
+                                        Add to Cart
+                                    </button>
                                 </span>								  
                             </div>
                         </div>

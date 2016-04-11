@@ -49,7 +49,7 @@
                                         <fmt:setLocale value="en_US"/>
                                         <div class="item-price pull-left"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</div>
                                         <!-- Add to cart -->
-                                        <div class="button pull-right"><a href="#">Add to Cart</a></div>
+                                        <div class="button pull-right"><a href="#" onclick="addcart(${item.id})">Add to Cart</a></div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

@@ -25,6 +25,7 @@ public class CenterServlet extends HttpServlet {
     private static String searchNameServlet = "SearchNameServlet";
     private static String addCartServlet = "AddToCart";
     private static String viewCartServlet = "ViewCartServlet";
+    private static String removeCartServlet = "RemoveCartServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +36,6 @@ public class CenterServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,8 +54,11 @@ public class CenterServlet extends HttpServlet {
             } else if (button.equals("Search")) {
                 RequestDispatcher rd = request.getRequestDispatcher(searchNameServlet);
                 rd.forward(request, response);
-            }else if (button.equals("Addtocart")) {
+            } else if (button.equals("Addtocart")) {
                 RequestDispatcher rd = request.getRequestDispatcher(addCartServlet);
+                rd.forward(request, response);
+            } else if (button.equals("removeCart")) {
+                RequestDispatcher rd = request.getRequestDispatcher(removeCartServlet);
                 rd.forward(request, response);
             }else if (button.equals("ViewCart")) {
                 RequestDispatcher rd = request.getRequestDispatcher(viewCartServlet);

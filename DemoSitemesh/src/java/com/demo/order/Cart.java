@@ -75,8 +75,12 @@ public class Cart {
 
     public boolean removeFromCart(String id) {
         if (cart.containsKey(id)) {
+            total = total.subtract(cart.get(id).getTotalPrice());
             cart.remove(id);
+            size = cart.size();
+            
             return true;
+
         }
         return false;
     }

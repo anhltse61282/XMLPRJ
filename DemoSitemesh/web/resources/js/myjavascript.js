@@ -121,7 +121,7 @@ function responseAddCartHandler() {
     if (httpRequest.readyState == 4) {
         if (httpRequest.status == 200) {
             var responseText = httpRequest.responseText;
-            
+
             var cartDetail = document.getElementById("cartDetail");
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(responseText, "text/xml");
@@ -151,23 +151,27 @@ function responseViewCartHandler() {
     if (httpRequest.readyState == 4) {
         if (httpRequest.status == 200) {
             var responseText = httpRequest.responseText;
-            
+
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(responseText, "text/xml");
             var details = xmlDoc.getElementsByTagName("order")[0].childNodes;
             var result = "";
-            var totalOrder =0;
+            var totalOrder = 0;
+            var count = 0;
             for (var i = 0; i < details.length; i++) {
                 var deviceName = "";
                 var quantity = "";
                 var price = "";
                 var totalPrice = "";
-                
+                var id = "";
                 if (details[i].childNodes) {
                     for (var j = 0; j < details[i].childNodes.length; j++) {
                         var detail = details[i].childNodes[j];
                         if (detail.nodeType === 1) {
-                            if (detail.nodeName == "deviceName") {
+                            if (detail.nodeName == "id") {
+                                id = detail.firstChild.nodeValue;
+//                                alert("details node " + (i + 1) + ": " + detail.nodeName + "=" + detail.firstChild.nodeValue);
+                            } else if (detail.nodeName == "deviceName") {
                                 deviceName = detail.firstChild.nodeValue;
 //                                alert("details node " + (i + 1) + ": " + detail.nodeName + "=" + detail.firstChild.nodeValue);
                             } else if (detail.nodeName == "quantity") {
@@ -182,7 +186,11 @@ function responseViewCartHandler() {
                     }
                 }
                 if (deviceName != "" || quantity != "" || price != "" || totalPrice != "") {
+                    count = count + 1;
                     result = result + "<tr>" +
+                            "<td>" +
+                            count +
+                            "</td>" +
                             "<td>" +
                             deviceName +
                             "</td>" +
@@ -195,16 +203,105 @@ function responseViewCartHandler() {
                             "<td>" +
                             formatNumber(totalPrice) + " VND" +
                             "</td>" +
+                            "<td>" +
+                            "<div class='hlinks' data-toggle='modal'><a href='#' role='button' onclick='deletecart( " + id + " )'>Xóa</a></div>" +
+                            "</td>" +
                             "</tr>";
-                    totalOrder = parseInt(totalOrder)+parseInt(totalPrice);
+                    totalOrder = parseInt(totalOrder) + parseInt(totalPrice);
                 }
             }
-            
+
             var cartTabl = document.getElementById("cartView");
-            var dialog = document.getElementById('cart');
-            cartTabl.innerHTML = result+"<tr>"+"<th></th>"+"<th></th>"+"<th>Total:</th>"+"<th>"+formatNumber(totalOrder)+" VND"+"</th>"+"</tr>";
+            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder) + " VND" + "</th>" + "<th></th></tr>";
 
         }
     }
 }
-    
+function deletecart(id) {
+//    alert(id);
+    var url = "/DemoSitemesh/CenterServlet?btnAction=removeCart&deviceID=" + id;
+    if (window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest();
+    }
+    httpRequest.onreadystatechange = responseRemoveCartHandler;
+    httpRequest.open('GET', url, true);
+    httpRequest.send(url);
+//    alert(cartTabl.innerHTML);
+
+}
+function responseRemoveCartHandler() {
+    if (httpRequest.readyState == 4) {
+        if (httpRequest.status == 200) {
+            var response = httpRequest.responseText;
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(response, "text/xml");
+            
+            var details = xmlDoc.getElementsByTagName("order")[0].childNodes;
+            var result = "";
+            var sizeCart = xmlDoc.getElementsByTagName("order")[0].getAttribute("size");
+            var totalprice = xmlDoc.getElementsByTagName("order")[0].getAttribute("total");
+            
+            var totalOrder = 0;
+            var count = 0;
+            for (var i = 0; i < details.length; i++) {
+                var deviceName = "";
+                var quantity = "";
+                var price = "";
+                var totalPrice = "";
+                var id = "";
+                if (details[i].childNodes) {
+                    for (var j = 0; j < details[i].childNodes.length; j++) {
+                        var detail = details[i].childNodes[j];
+                        if (detail.nodeType === 1) {
+                            if (detail.nodeName == "id") {
+                                id = detail.firstChild.nodeValue;
+//                                alert("details node " + (i + 1) + ": " + detail.nodeName + "=" + detail.firstChild.nodeValue);
+                            } else if (detail.nodeName == "deviceName") {
+                                deviceName = detail.firstChild.nodeValue;
+//                                alert("details node " + (i + 1) + ": " + detail.nodeName + "=" + detail.firstChild.nodeValue);
+                            } else if (detail.nodeName == "quantity") {
+                                quantity = detail.firstChild.nodeValue;
+//                                alert("details node " + (i + 1) + ": " + detail.nodeName + "=" + detail.firstChild.nodeValue);
+                            } else if (detail.nodeName == "price") {
+                                price = detail.firstChild.nodeValue;
+                            } else if (detail.nodeName == "totalPrice") {
+                                totalPrice = detail.firstChild.nodeValue;
+                            }
+                        }
+                    }
+                }
+                if (deviceName != "" || quantity != "" || price != "" || totalPrice != "") {
+                    count = count + 1;
+                    result = result + "<tr>" +
+                            "<td>" +
+                            count +
+                            "</td>" +
+                            "<td>" +
+                            deviceName +
+                            "</td>" +
+                            "<td>" +
+                            quantity +
+                            "</td>" +
+                            "<td>" +
+                            formatNumber(price) + " VND" +
+                            "</td>" +
+                            "<td>" +
+                            formatNumber(totalPrice) + " VND" +
+                            "</td>" +
+                            "<td>" +
+                            "<div class='hlinks' data-toggle='modal'><a href='#' role='button' onclick='deletecart( " + id + " )'>Xóa</a></div>" +
+                            "</td>" +
+                            "</tr>";
+                    totalOrder = parseInt(totalOrder) + parseInt(totalPrice);
+                }
+            }
+            var cartTabl = document.getElementById("cartView");
+            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder) 
+                    + " VND" + "</th>" + "<th></th></tr>";
+            var cartDetail = document.getElementById("cartDetail");
+            cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +
+                    sizeCart + " Item(s) in your <i class='fa fa-shopping-cart'></i>" +
+                    "</a> -<span class='bold'> " + formatNumber(totalprice) + " VND" + "</span>";
+        }
+    }
+}

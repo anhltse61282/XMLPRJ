@@ -58,10 +58,12 @@
                             <table class="table table-striped tcart">
                                 <thead>
                                     <tr>
+                                        <th>No.</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Đơn giá</th>
                                         <th>Tổng</th>
+                                        <th>Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody id="cartView">
