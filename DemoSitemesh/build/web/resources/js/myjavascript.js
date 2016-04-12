@@ -8,18 +8,18 @@ function radiohandler() {
     var ex1 = document.querySelector('input[name = "rdLogin"]:checked').value;
     var form = document.getElementById("formAuth");
     if (ex1 == "newCus") {
-        form.innerHTML = "<h4 class='title'>Create new Account</h4>" +
+        form.innerHTML = "<h4 class='title'>Tạo tài khoản mới</h4>" +
                 "<div class='form' >" +
                 "<form class='form-horizontal' method='Post' action='CenterServlet'>" +
                 "<div class='form-group'>" +
-                "<label class='control-label col-md-3' for='username2'>Username</label>" +
+                "<label class='control-label col-md-3' for='username2'>Tên người dùng</label>" +
                 "<div class='col-md-8'>" +
                 "<input type='text' class='form-control' id='username2'>" +
                 "</div>" +
                 "</div>" +
                 "<!-- Password -->" +
                 " <div class='form-group'>" +
-                "<label class='control-label col-md-3' for='password2'>Password</label>" +
+                "<label class='control-label col-md-3' for='password2'>Mật khẩu:</label>" +
                 "<div class='controls col-md-8'>" +
                 "<input type='password' class='form-control' id='password2'>" +
                 "</div>" +
@@ -32,24 +32,24 @@ function radiohandler() {
                 "</div>" +
                 "<div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
-                "<button type='submit' class='btn btn-danger' name='btnAction' value='Register'>Register</button>" +
+                "<button type='submit' class='btn btn-danger' name='btnAction' value='Register'>Đăng ký</button>" +
                 "<button type='reset' class='btn btn-default'>Reset</button>" +
                 "</div>" +
                 "</div></form></div>";
     } else {
         form.innerHTML =
-                "<h4 class='title'>Login to Your Account</h4>" +
+                "<h4 class='title'>Đăng nhập</h4>" +
                 "<div class='form' method='Post' action='CenterServlet'>" +
                 "<form class='form-horizontal'>" +
                 "<div class='form-group'>" +
-                "<label class='control-label col-md-3' for='username2'>Username</label>" +
+                "<label class='control-label col-md-3' for='username2'>Tên người dùng</label>" +
                 "<div class='col-md-8'>" +
                 "<input type='text' class='form-control' id='username2'>" +
                 "</div>" +
                 "</div>" +
                 "<!-- Password -->" +
                 " <div class='form-group'>" +
-                "<label class='control-label col-md-3' for='password2'>Password</label>" +
+                "<label class='control-label col-md-3' for='password2'>Mật khẩu:</label>" +
                 "<div class='controls col-md-8'>" +
                 "<input type='password' class='form-control' id='password2'>" +
                 "</div>" +
@@ -58,13 +58,13 @@ function radiohandler() {
                 " <div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
                 "<label class='checkbox-inline'>" +
-                "<input type='checkbox' id='inlineCheckbox3' value='agree'> Remember Password" +
+                "<input type='checkbox' id='inlineCheckbox3' value='agree'> Nhớ mật khẩu" +
                 "</label>" +
                 "</div>" +
                 "</div>" +
                 "<div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
-                "<button type='submit' class='btn btn-danger' name='btnAction' value='Login'>Login</button>" +
+                "<button type='submit' class='btn btn-danger' name='btnAction' value='Login'>Đăng nhập</button>" +
                 "<button type='reset' class='btn btn-default'>Reset</button>" +
                 "</div>" +
                 "</div></form></div>";
@@ -197,7 +197,7 @@ function responseAddCartHandler() {
             var totalPrice = xmlDoc.getElementsByTagName("totalPrice")[0].childNodes[0].nodeValue;
 
             cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +
-                    numberDevices + " Item(s) in your <i class='fa fa-shopping-cart'></i>" +
+                    numberDevices + " sản phẩm trong giỏ <i class='fa fa-shopping-cart'></i>" +
                     "</a> -<span class='bold'> " + formatNumber(totalPrice) + " VND" + "</span>";
             viewCart();
         }
@@ -364,13 +364,17 @@ function responseRemoveCartHandler() {
             }
             var cartTabl = document.getElementById("cartView");
             var cartTable2 = document.getElementById("cartViewChk");
-            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
-                    + " VND" + "</th>" + "<th></th></tr>";
-            cartTable2.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
-                    + " VND" + "</th>" + "<th></th></tr>";
+            if (cartTabl != null) {
+                cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
+                        + " VND" + "</th>" + "<th></th></tr>";
+            }
+            if (cartTable2 != null) {
+                cartTable2.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
+                        + " VND" + "</th>" + "<th></th></tr>";
+            }
             var cartDetail = document.getElementById("cartDetail");
             cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +
-                    sizeCart + " Item(s) in your <i class='fa fa-shopping-cart'></i>" +
+                    sizeCart + " sản phẩm trong giỏ <i class='fa fa-shopping-cart'></i>" +
                     "</a> -<span class='bold'> " + formatNumber(totalprice) + " VND" + "</span>";
         }
     }

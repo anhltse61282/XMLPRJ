@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>THANH TOÁN</title>
     </head>
     <body>
         <div class="checkout">
@@ -24,21 +24,21 @@
                     </h5>
                     <div class="col-md-6">
                         <div class="formy well" id="formAuth">
-                            <h4 class="title">Login to Your Account</h4>
+                            <h4 class="title">Đăng nhập</h4>
                             <div class="form">
 
                                 <!-- Login  form (not working)-->
                                 <form class="form-horizontal" >                                         
                                     <!-- Username -->
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="username2">Username</label>
+                                        <label class="control-label col-md-3" for="username2">Tên người dùng</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="username2">
                                         </div>
                                     </div>
                                     <!-- Password -->
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="password2">Password</label>
+                                        <label class="control-label col-md-3" for="password2">Mật khẩu</label>
                                         <div class="controls col-md-8">
                                             <input type="password" class="form-control" id="password2">
                                         </div>
@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-3">
                                             <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox3" value="agree"> Remember Password
+                                                <input type="checkbox" id="inlineCheckbox3" value="agree"> Nhớ mật khẩu
                                             </label>
                                         </div>
                                     </div> 
@@ -56,14 +56,13 @@
                                     <div class="form-group">
                                         <!-- Buttons -->
                                         <div class="col-md-8 col-md-offset-3">
-                                            <button type="submit" class="btn btn-danger">Login</button>
+                                            <button type="submit" class="btn btn-danger">Đăng nhập</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         </div>
                                     </div>
                                 </form>
                                 <hr>
-                                <h5>New Account</h5>
-                                Don't have an Account? <a href="register.html">Register</a>
+                                
                             </div> 
                         </div>
 
@@ -103,8 +102,8 @@
                                             <tr>
                                                 <th></th>
                                                 <th></th>
-                                                <th>Total:</th>
-                                                <th>${sessionScope.Cart.total}</th>
+                                                <th>Tổng cộng:</th>
+                                                <th><fmt:formatNumber  pattern="###,###" type="number" value="${sessionScope.Cart.total}"></fmt:formatNumber>VND</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
