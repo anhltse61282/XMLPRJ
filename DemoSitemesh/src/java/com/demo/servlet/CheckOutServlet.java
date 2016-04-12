@@ -6,8 +6,12 @@
 
 package com.demo.servlet;
 
+import com.assignment.dao.CatalogDAO;
+import com.demo.dto.Catalogs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,16 +37,11 @@ public class CheckOutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CheckOutServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CheckOutServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            CatalogDAO catalogDAO = new CatalogDAO();
+            List<Catalogs> result = catalogDAO.getAll();
+            request.setAttribute("catalogs", result);
+            RequestDispatcher rd = request.getRequestDispatcher("checkout.jsp");
+            rd.forward(request, response);
         } finally {
             out.close();
         }

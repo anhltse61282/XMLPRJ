@@ -363,7 +363,10 @@ function responseRemoveCartHandler() {
                 }
             }
             var cartTabl = document.getElementById("cartView");
+            var cartTable2 = document.getElementById("cartViewChk");
             cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
+                    + " VND" + "</th>" + "<th></th></tr>";
+            cartTable2.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
                     + " VND" + "</th>" + "<th></th></tr>";
             var cartDetail = document.getElementById("cartDetail");
             cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +

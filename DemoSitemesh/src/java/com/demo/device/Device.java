@@ -113,6 +113,28 @@ public class Device {
      *     {@link BigInteger }
      *     
      */
+    
+    public Device() {
+        this.id = null;
+        this.battery =null;
+        this.brandID = null;
+        this.catalogID =null;
+        this.chipName = null;
+        this.color =null;
+        this.chipset = null;
+        this.imageLink =null;
+        this.maincamera = null;
+        this.memory =null;
+        this.memorycard = null;
+        this.monitor =null;
+        this.os = null;
+        this.price =null;
+        this.productName = null;
+        this.subCamera =null;
+        
+    }
+
+    
     public BigInteger getId() {
         return id;
     }

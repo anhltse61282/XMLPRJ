@@ -4,6 +4,8 @@
     Author     : Gunner
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,6 +64,60 @@
                                 <hr>
                                 <h5>New Account</h5>
                                 Don't have an Account? <a href="register.html">Register</a>
+                            </div> 
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="formy well" id="formAuth">
+                            <h4 class="title">Đơn hàng:</h4>
+                            <div class="form">
+                                <table class="table table-striped tcart">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá</th>
+                                            <th>Tổng</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cartViewChk">
+                                        <c:forEach items="${sessionScope.Cart.cart}" var="item" varStatus="count">
+                                            <!-- Login  form (not working)-->
+
+
+                                            <tr>
+                                                <td>${count.count}</td>
+                                                <td>${item.value.deviceName}</td>
+                                                <td>${item.value.quantity}</td>
+                                                <fmt:setLocale value="en_US"/>
+                                                <td><fmt:formatNumber  pattern="###,###" type="number" value="${item.value.price}"></fmt:formatNumber>VND</td>
+                                                <td><fmt:formatNumber  pattern="###,###" type="number" value="${item.value.totalPrice}"></fmt:formatNumber>VND</td>
+                                                <td><div class='hlinks' data-toggle='modal'><a href='#' role='button' onclick="deletecart(${item.value.id})">Xóa</a></div></td>
+                                            </tr>
+
+
+                                        </c:forEach>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Total:</th>
+                                                <th>${sessionScope.Cart.total}</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            
+                                            <td colspan="6"> <button class="btn btn-danger" id="btnConfirm" onclick="confirm">Tiếp tục mà không cần đăng nhập</button></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <hr>
+
                             </div> 
                         </div>
 
