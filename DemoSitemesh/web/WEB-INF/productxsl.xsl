@@ -64,16 +64,12 @@
                                         <xsl:attribute name="onclick">
                                             addcart(<xsl:value-of select="id" />)
                                         </xsl:attribute>
-                                        Add to Cart
+                                        Mua ngay
                                     </button>
                                 </span>								  
                             </div>
                         </div>
                     </div>
-
-                    <!-- Add to wish list -->
-                    <a href="wish-list.html">+ Add to Wish List</a>
-
 
                 </div>   
             </div>

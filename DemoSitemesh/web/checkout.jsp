@@ -24,39 +24,32 @@
                     </h5>
                     <div class="col-md-6">
                         <div class="formy well" id="formAuth">
-                            <h4 class="title">Login to Your Account</h4>
+                            <h4 class="title">Đăng nhập</h4>
                             <div class="form">
 
                                 <!-- Login  form (not working)-->
                                 <form class="form-horizontal" >                                         
                                     <!-- Username -->
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="username2">Username</label>
+                                        <label class="control-label col-md-3" for="username2">Tài khoản</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="username2">
                                         </div>
                                     </div>
                                     <!-- Password -->
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="password2">Password</label>
+                                        <label class="control-label col-md-3" for="password2">Mật Khẩu</label>
                                         <div class="controls col-md-8">
                                             <input type="password" class="form-control" id="password2">
                                         </div>
                                     </div>
-                                    <!-- Checkbox -->
-                                    <div class="form-group">
-                                        <div class="col-md-8 col-md-offset-3">
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox3" value="agree"> Remember Password
-                                            </label>
-                                        </div>
-                                    </div> 
+                                   
 
                                     <!-- Buttons -->
                                     <div class="form-group">
                                         <!-- Buttons -->
                                         <div class="col-md-8 col-md-offset-3">
-                                            <button type="submit" class="btn btn-danger">Login</button>
+                                            <button type="submit" class="btn btn-danger">Đăng nhập</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         </div>
                                     </div>

@@ -239,20 +239,20 @@
                                 <c:set var="cart" value="${sessionScope.Cart}"></c:set>
                                 <c:if test="${empty cart}">
                                     <a href="#cartViewModal" role="button" data-toggle="modal" >
-                                        0 Item(s) in your <i class="fa fa-shopping-cart"></i>
-                                    </a> -<span class="bold">$0</span>  
+                                        0 sản phẩm trong <i class="fa fa-shopping-cart"></i>
+                                    </a> - <span class="bold">$0</span>  
                                 </span>
                             </c:if>
                             <c:if test="${not empty cart}">
                                 <a href="#cart" role="button" data-toggle="modal" >
-                                    ${cart.size} Item(s) in your <i class="fa fa-shopping-cart"></i>
-                                </a> -<span class="bold"><fmt:formatNumber  pattern="###,###" type="number" value="${cart.total}"></fmt:formatNumber>VND</span>  
+                                    ${cart.size} sản phẩm trong <i class="fa fa-shopping-cart"></i>
+                                </a> - <span class="bold"><fmt:formatNumber  pattern="###,###" type="number" value="${cart.total}"></fmt:formatNumber>VND</span>  
                                     </span>
                             </c:if>
                             </span>
                             <!-- Login and Register link -->
-                            <span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
-                                or <a href="#register" role="button" data-toggle="modal">Register</a></span>
+<!--                            <span class="lr"><a href="#login" role="button" data-toggle="modal">Login</a>
+                                or <a href="#register" role="button" data-toggle="modal">Register</a></span>-->
                         </div>
 
                     </div>
