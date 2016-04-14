@@ -45,10 +45,11 @@ public class PaymentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(false);
+        Integer orderID = 0;
         try {
 
             Cart cart = (Cart) session.getAttribute("Cart");
-            UsersDTO user = (UsersDTO) session.getAttribute("");
+            UsersDTO user = (UsersDTO) session.getAttribute("User");
             String txtFullname = request.getParameter("txtFullname");
             String txtemail = request.getParameter("txtemail1");
             String txtphone = request.getParameter("txttelephone");
@@ -61,6 +62,7 @@ public class PaymentServlet extends HttpServlet {
             String txtDeladd = request.getParameter("txtDeladdress");
             String txtDelstate = request.getParameter("txtDelstate");
             String txtDelcity = request.getParameter("txtDelcity");
+            System.out.println(txtFullname);
             OrdersDTO ordersDTO = new OrdersDTO(txtFullname, txtemail, txtphone, txtadd, txtstate, txtcity, txtDelFullname, txtDelemail, txtDelphone, txtDeladd, txtDelstate, txtDelcity);
             if (cart.getSize() > 0) {
 
@@ -87,7 +89,7 @@ public class PaymentServlet extends HttpServlet {
                     params.add("guest");
                 }
                 params.add(new Date().toString());
-                Integer orderID = dbapi.insertData(insertOrder, params);
+                orderID = dbapi.insertData(insertOrder, params);
                 HashMap items = cart.getCart();
                 Iterator iter = items.entrySet().iterator();
                 while (iter.hasNext()) {
@@ -103,6 +105,7 @@ public class PaymentServlet extends HttpServlet {
                 }
                 System.out.println("done");
             }
+            request.setAttribute("orderID", orderID);
             request.setAttribute("Order", ordersDTO);
             request.setAttribute("CartReq", cart);
             session.removeAttribute("Cart");

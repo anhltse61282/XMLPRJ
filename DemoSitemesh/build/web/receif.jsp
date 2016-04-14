@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Receift</title>
     </head>
     <body>
         <div class="items">
@@ -25,7 +25,7 @@
                             <h4 class="title">Xác nhận:</h4>
 
                             <h4>Giao dịch thành công, cám ơn quý khách đã ủng hộ.</h4>
-                            <p>Đơn hàng của bạn #id là <strong>43454354</strong>.
+                            <p>Đơn hàng của bạn #id là <strong>${requestScope.orderID}</strong>.
                             <div class="formy well" id="formAuth">
                                 <div class="form">
                                     <form class="form-horizontal" > 

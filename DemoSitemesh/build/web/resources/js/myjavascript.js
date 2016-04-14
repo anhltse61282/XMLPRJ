@@ -54,7 +54,6 @@ function radiohandler() {
                 "<input type='password' class='form-control' id='password2'>" +
                 "</div>" +
                 "</div>" +
-                
                 "<div class='form-group'>" +
                 "<div class='col-md-8 col-md-offset-3'>" +
                 "<button type='submit' class='btn btn-danger' name='btnAction' value='Login'>Đăng nhập</button>" +
@@ -357,10 +356,14 @@ function responseRemoveCartHandler() {
             }
             var cartTabl = document.getElementById("cartView");
             var cartTable2 = document.getElementById("cartViewChk");
-            cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
-                    + " VND" + "</th>" + "<th></th></tr>";
-            cartTable2.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
-                    + " VND" + "</th>" + "<th></th></tr>";
+            if (cartTabl != null) {
+                cartTabl.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
+                        + " VND" + "</th>" + "<th></th></tr>";
+            }
+            if (cartTable2 != null) {
+                cartTable2.innerHTML = result + "<tr>" + "<th></th>" + "<th></th><th></th>" + "<th>Total:</th>" + "<th>" + formatNumber(totalOrder)
+                        + " VND" + "</th>" + "<th></th></tr>";
+            }
             var cartDetail = document.getElementById("cartDetail");
             cartDetail.innerHTML = "<a href='#cart' role='button' data-toggle='modal'>" +
                     sizeCart + " sản phẩm trong <i class='fa fa-shopping-cart'></i>" +
@@ -383,33 +386,33 @@ function copyInfor() {
     var txtDelstate = document.getElementsByName("txtDelstate")[0];
     var txtDelcity = document.getElementsByName("txtDelcity")[0];
     if (chekCopy.checked) {
-        
+
 
         txtDelname.value = txtname.value;
-        txtDelname.readOnly  = true;
+        txtDelname.readOnly = true;
         txtDelemail.value = txtemail.value;
-        txtDelemail.readOnly  = true;
+        txtDelemail.readOnly = true;
         txtDelphone.value = txtphone.value;
-        txtDelphone.readOnly  = true;
+        txtDelphone.readOnly = true;
         txtDeladd.value = txtadd.value;
-        txtDeladd.readOnly  = true;
+        txtDeladd.readOnly = true;
         txtDelcity.value = txtcity.value;
-        txtDelcity.readOnly  = true;
+        txtDelcity.readOnly = true;
         txtDelstate.value = txtstate.value;
-        txtDelstate.readOnly  = true;
+        txtDelstate.readOnly = true;
     } else {
 
         txtDelname.value = "";
-        txtDelname.readOnly  = false;
+        txtDelname.readOnly = false;
         txtDelemail.value = "";
-        txtDelemail.readOnly  = false;
+        txtDelemail.readOnly = false;
         txtDelphone.value = "";
-        txtDelphone.readOnly  = false;
+        txtDelphone.readOnly = false;
         txtDeladd.value = "";
-        txtDeladd.readOnly  = false;
+        txtDeladd.readOnly = false;
         txtDelcity.value = "";
-        txtDelcity.readOnly  = false;
+        txtDelcity.readOnly = false;
         txtDelstate.value = "";
-        txtDelstate.readOnly  = false;
+        txtDelstate.readOnly = false;
     }
 }
