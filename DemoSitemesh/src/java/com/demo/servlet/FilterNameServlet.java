@@ -43,8 +43,22 @@ public class FilterNameServlet extends HttpServlet {
         try {
             String catalogID = request.getParameter("catalogId");
             String brandID = request.getParameter("brandID");
+            String page = request.getParameter("p");
+            int size = 10;
+            String upper = null;
+            String lower = null;
+            if (page == null ) {
+                page = "1";
+            }
+            if (page != null) {
+                Integer pageNum = Integer.parseInt(page);
+                Integer upperInt = (pageNum)*size;
+                Integer lowerint = (pageNum-1)*size;
+                upper = upperInt.toString();
+                lower = lowerint.toString();
+            }
             DeviceDAO deviceDAO = new DeviceDAO();
-            List<Device> products = deviceDAO.filterDevice(catalogID, brandID);
+            List<Device> products = deviceDAO.filterDevice(catalogID, brandID,upper,lower);
             CatalogDAO catalogDAO = new CatalogDAO();
             List<Catalogs> catalog = catalogDAO.getAll();
             BrandDAO brandDAO = new BrandDAO();

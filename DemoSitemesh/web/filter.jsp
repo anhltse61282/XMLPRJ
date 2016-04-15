@@ -73,7 +73,7 @@
 
                         <div class="row" >
 
-                            <c:forEach items="${requestScope.products}" var="item" begin="1" end="9">
+                            <c:forEach items="${requestScope.products}" var="item">
                                 <div class="col-md-4 col-sm-6">
                                     <!-- Each item should be enclosed in "item" class -->
                                     <div class="item">
@@ -100,23 +100,30 @@
 
                                                 <hr />
                                                 <!-- Price -->
-                                                <fmt:setLocale value="en_US"/>
-                                                <div class="item-price pull-left"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</div>
+                                            <fmt:setLocale value="en_US"/>
+                                            <div class="item-price pull-left"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</div>
                                                 <!-- Add to cart -->
                                                 <div class="button pull-right"><a href="#" name="addtocart" onclick="addcart(${item.id})" id ="${item.id}">Mua ngay</a></div>
-                                                <div class="clearfix"></div>
-                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
+                                </div>
+
                             </c:forEach>
                             <div class="col-md-9 col-sm-9">
-                                <!-- Pagination -->
                                 <div class="paging">
-                                    <span class='current'>1</span>
-                                    <a href='#'>2</a>
-                                    <span class="dots">&hellip;</span>
-                                    <a href='#'>6</a>
-                                    <a href="#">Next</a>
+                                    <c:forEach begin="1" end="${requestScope.size}" var="size">
+                                        <c:url var="viewDevicepage" value="CenterServlet">
+                                            <c:param name="btnAction" value="filter"></c:param>
+                                            <c:param name="brandID" value="${param.brandID}"></c:param>
+                                            <c:param name="brandName" value="${param.brandName}"></c:param>
+                                            <c:param name="catalogName" value="${param.catalogName}"></c:param>
+                                            <c:param name="catalogId" value="${param.catalogId}"></c:param>
+                                            <c:param name="p" value="${size}"></c:param>
+                                        </c:url>
+                                        <!-- Pagination -->                                   
+                                        <a href='${viewDevicepage}'>${size}</a>                            
+                                    </c:forEach>
                                 </div>
                             </div>           
 
