@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/web/WEB-INF/OrderXSD.xsd" uri="src/conf/xml-resources/jaxb/OrderJXB/OrderXSD.xsd"/>
+</catalog>

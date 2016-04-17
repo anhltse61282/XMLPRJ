@@ -42,30 +42,42 @@ public class FilterServlet extends HttpServlet {
         try {
             String catalogID = request.getParameter("catalogId");
             String page = request.getParameter("p");
+            String option = request.getParameter("slSort");
             System.out.println(page);
-            int size = 10;
+            int size = 12;
             String upper = null;
             String lower = null;
-            if (page == null ) {
+            Integer pageNum = null;
+            if (page == null) {
                 page = "1";
             }
             if (page != null) {
-                Integer pageNum = Integer.parseInt(page);
-                Integer upperInt = (pageNum)*size;
-                Integer lowerint = (pageNum-1)*size;
-                upper = upperInt.toString();
-                lower = lowerint.toString();
+
+                pageNum = Integer.parseInt(page);
+                if (pageNum > 1) {
+                    Integer upperInt = (pageNum) * size ;
+                    Integer lowerint = (pageNum - 1) * size +1;
+                    upper = upperInt.toString();
+                    lower = lowerint.toString();
+                }
+                if (pageNum == 1) {
+                    Integer upperInt = (pageNum) * size;
+                    Integer lowerint = (pageNum - 1) * size;
+                    upper = upperInt.toString();
+                    lower = lowerint.toString();
+                }
+
             }
             String brandID = "";
             DeviceDAO deviceDAO = new DeviceDAO();
-            List<Device> products = deviceDAO.filterDevice(catalogID, brandID,upper,lower);
+            List<Device> products = deviceDAO.filterDevice(catalogID, brandID, upper, lower,option);
             CatalogDAO catalogDAO = new CatalogDAO();
             List<Catalogs> catalog = catalogDAO.getAll();
             BrandDAO brandDAO = new BrandDAO();
             List<Brands> list = brandDAO.getAll();
             request.setAttribute("catalogs", catalog);
-            request.setAttribute("size", deviceDAO.filterDeviceSize(catalogID, brandID));
-            System.out.println(deviceDAO.filterDeviceSize(catalogID, brandID));
+            request.setAttribute("sizeBrand", deviceDAO.filterDeviceSize(catalogID, brandID, pageNum));
+            System.out.println(deviceDAO.filterDeviceSize(catalogID, brandID, pageNum));
             request.setAttribute("products", products);
             request.setAttribute("brands", list);
             RequestDispatcher rd = request.getRequestDispatcher("filter.jsp");

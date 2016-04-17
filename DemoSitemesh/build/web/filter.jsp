@@ -16,7 +16,7 @@
         </head>
         <body>
             <div class="items">
-                <div class="container" id = "productDiv"">
+                <div class="container" id = "productDiv">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 hidden-xs">
 
@@ -59,12 +59,37 @@
 
                         <!-- Sorting -->
                         <div class="form-group pull-right">                               
-                            <select class="form-control">
-                                <option>Sort By</option>
-                                <option>Name (A-Z)</option>
-                                <option>Name (Z-A></option>
-                                <option>Price (Low-High)</option>
-                                <option>Price (High-Low)</option>
+                            <select class="form-control" id="slSort" onchange="fnSort()">
+                                <c:if test="${param.slSort != null}">
+                                    <option  value="">Sắp xếp theo</option>
+                                </c:if>
+                                <c:if test="${param.slSort == null}">
+                                    <option selected="selected" value="">Sắp xếp theo</option>
+                                </c:if>
+                                <c:if test="${param.slSort eq 'AZ'}">
+                                    <option value="AZ" selected="selected">Tên sản phẩm (A-Z)</option>
+                                </c:if>
+                                <c:if test="${param.slSort != 'AZ'}">
+                                    <option value="AZ" >Tên sản phẩm (A-Z)</option>
+                                </c:if>
+                                <c:if test="${param.slSort eq 'ZA'}">
+                                    <option value="ZA" selected="selected">Tên sản phẩm (Z-A)</option>
+                                </c:if>
+                                <c:if test="${param.slSort != 'ZA'}">
+                                    <option value="ZA" > Tên sản phẩm (Z-A)</option>
+                                </c:if>
+                                <c:if test="${param.slSort eq 'ASD'}">
+                                    <option value="ASD" selected="selected">Giá (thấp-cao)</option>
+                                </c:if>
+                                    <c:if test="${param.slSort != 'ASD'}">
+                                    <option value="ASD" >Giá (thấp-cao)</option>
+                                </c:if>
+                                <c:if test="${param.slSort eq 'DESC'}">
+                                    <option value="DESC" selected="selected">Giá (cao-thấp)</option>
+                                </c:if>
+                                    <c:if test="${param.slSort != 'DESC'}">
+                                    <option value="DESC">giá (cao-thấp)</option>
+                                </c:if>
                                 <option>Ratings</option>
                             </select>  
                         </div>
@@ -94,12 +119,12 @@
                                         <div class="item-details">
                                             <!-- Name -->
                                             <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
-                                            <h5><a href="${viewDevice}">${item.productName}</a><span class="ico"><img src="<c:url value="resources/img/hot.png"></c:url>" alt="" /></span></h5>
-                                                <div class="clearfix"></div>
-                                                <!-- Para. Note more than 2 lines. -->
+                                            <h5><a href="${viewDevice}">${item.productName}</a> <br/><span> <font color="red"> ${item.source}</font></span></h5>
+                                            <div class="clearfix"></div>
+                                            <!-- Para. Note more than 2 lines. -->
 
-                                                <hr />
-                                                <!-- Price -->
+                                            <hr />
+                                            <!-- Price -->
                                             <fmt:setLocale value="en_US"/>
                                             <div class="item-price pull-left"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</div>
                                                 <!-- Add to cart -->
@@ -110,21 +135,57 @@
                                 </div>
 
                             </c:forEach>
-                            <div class="col-md-9 col-sm-9">
-                                <div class="paging">
-                                    <c:forEach begin="1" end="${requestScope.size}" var="size">
-                                        <c:url var="viewDevicepage" value="CenterServlet">
-                                            <c:param name="btnAction" value="filter"></c:param>
-                                            <c:param name="brandID" value="${param.brandID}"></c:param>
-                                            <c:param name="brandName" value="${param.brandName}"></c:param>
-                                            <c:param name="catalogName" value="${param.catalogName}"></c:param>
-                                            <c:param name="catalogId" value="${param.catalogId}"></c:param>
-                                            <c:param name="p" value="${size}"></c:param>
-                                        </c:url>
-                                        <!-- Pagination -->                                   
-                                        <a href='${viewDevicepage}'>${size}</a>                            
-                                    </c:forEach>
+                            <c:set var="defaultpage" value="${param.p}"></c:set>
+                                <div class="col-md-9 col-sm-9">
+
+                                    <div class="paging">
+                                    <c:set var="action" value="${param.btnAction}"></c:set>
+                                    <c:if test="${action eq 'filter'}">
+                                        <c:forEach items="${requestScope.sizeBrand}" var="size">
+
+                                            <c:url var="viewDevicepage" value="CenterServlet">
+                                                <c:param name="btnAction" value="filter"></c:param>
+                                                <c:param name="brandID" value="${param.brandID}"></c:param>
+                                                <c:param name="brandName" value="${param.brandName}"></c:param>
+                                                <c:param name="catalogName" value="${param.catalogName}"></c:param>
+                                                <c:param name="catalogId" value="${param.catalogId}"></c:param>
+                                                <c:param name="p" value="${size}"></c:param>
+                                                <c:param name="slSort" value="${param.slSort}"></c:param>
+                                            </c:url>
+                                            <!-- Pagination -->    
+
+                                            <c:if test="${size != param.p}">
+                                                <a href='${viewDevicepage}'>${size}</a>
+                                            </c:if>
+                                            <c:if test="${size == param.p}">
+                                                <span href='${viewDevicepage}' class="current">${size}</span>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${action eq 'filterName'}">
+                                        <c:forEach items="${requestScope.size}" var="size">
+
+                                            <c:url var="viewDevicepage" value="CenterServlet">
+                                                <c:param name="btnAction" value="filterName"></c:param>
+                                                <c:param name="brandID" value="${param.brandID}"></c:param>
+                                                <c:param name="brandName" value="${param.brandName}"></c:param>
+                                                <c:param name="catalogName" value="${param.catalogName}"></c:param>
+                                                <c:param name="catalogId" value="${param.catalogId}"></c:param>
+                                                <c:param name="p" value="${size}"></c:param>
+                                                <c:param name="slSort" value="${param.slSort}"></c:param>
+                                            </c:url>
+                                            <!-- Pagination -->    
+
+                                            <c:if test="${size != param.p}">
+                                                <a href='${viewDevicepage}'>${size}</a>
+                                            </c:if>
+                                            <c:if test="${size == param.p}">
+                                                <span href='${viewDevicepage}' class="current">${size}</span>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
                                 </div>
+
                             </div>           
 
                         </div>

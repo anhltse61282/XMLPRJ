@@ -44,27 +44,30 @@ public class FilterNameServlet extends HttpServlet {
             String catalogID = request.getParameter("catalogId");
             String brandID = request.getParameter("brandID");
             String page = request.getParameter("p");
-            int size = 10;
+            String option = request.getParameter("slSort");
+            int size = 12;
             String upper = null;
             String lower = null;
+            Integer pageNum=null ;
             if (page == null ) {
                 page = "1";
             }
             if (page != null) {
-                Integer pageNum = Integer.parseInt(page);
+                pageNum = Integer.parseInt(page);
                 Integer upperInt = (pageNum)*size;
                 Integer lowerint = (pageNum-1)*size;
                 upper = upperInt.toString();
                 lower = lowerint.toString();
             }
             DeviceDAO deviceDAO = new DeviceDAO();
-            List<Device> products = deviceDAO.filterDevice(catalogID, brandID,upper,lower);
+            List<Device> products = deviceDAO.filterDevice(catalogID, brandID,upper,lower,option);
             CatalogDAO catalogDAO = new CatalogDAO();
             List<Catalogs> catalog = catalogDAO.getAll();
             BrandDAO brandDAO = new BrandDAO();
             List<Brands> list = brandDAO.getAll();
             request.setAttribute("catalogs", catalog);
             request.setAttribute("products", products);
+            request.setAttribute("size", deviceDAO.filterDeviceSize(catalogID, brandID,pageNum));
             request.setAttribute("brands", list);
             RequestDispatcher rd = request.getRequestDispatcher("filter.jsp");
             rd.forward(request, response);

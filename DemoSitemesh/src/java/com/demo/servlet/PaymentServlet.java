@@ -10,6 +10,7 @@ import com.demo.dto.OrdersDTO;
 import com.demo.dto.UsersDTO;
 import com.demo.order.Cart;
 import com.demo.order.OrderDetails;
+import com.demo.payment;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -49,19 +50,19 @@ public class PaymentServlet extends HttpServlet {
         try {
 
             Cart cart = (Cart) session.getAttribute("Cart");
-            UsersDTO user = (UsersDTO) session.getAttribute("User");
-            String txtFullname = request.getParameter("txtFullname");
-            String txtemail = request.getParameter("txtemail1");
-            String txtphone = request.getParameter("txttelephone");
-            String txtadd = request.getParameter("txtaddress");
-            String txtstate = request.getParameter("txtstate");
-            String txtcity = request.getParameter("txtcity");
-            String txtDelFullname = request.getParameter("txtDelFullname");
-            String txtDelemail = request.getParameter("txtDelemail1");
-            String txtDelphone = request.getParameter("txtDeltelephone");
-            String txtDeladd = request.getParameter("txtDeladdress");
-            String txtDelstate = request.getParameter("txtDelstate");
-            String txtDelcity = request.getParameter("txtDelcity");
+            UsersDTO user = (UsersDTO) session.getAttribute("USER");
+            String txtFullname = new String(request.getParameter("txtFullname").getBytes("iso-8859-1"),"UTF-8");
+            String txtemail = new String(request.getParameter("txtemail1").getBytes("iso-8859-1"),"UTF-8");
+            String txtphone =new String( request.getParameter("txttelephone").getBytes("iso-8859-1"),"UTF-8");
+            String txtadd = new String(request.getParameter("txtaddress").getBytes("iso-8859-1"),"UTF-8");
+            String txtstate = new String(request.getParameter("txtstate").getBytes("iso-8859-1"),"UTF-8");
+            String txtcity =new String( request.getParameter("txtcity").getBytes("iso-8859-1"),"UTF-8");
+            String txtDelFullname = new String(request.getParameter("txtDelFullname").getBytes("iso-8859-1"),"UTF-8");
+            String txtDelemail = new String(request.getParameter("txtDelemail1").getBytes("iso-8859-1"),"UTF-8");
+            String txtDelphone = new String(request.getParameter("txtDeltelephone").getBytes("iso-8859-1"),"UTF-8");
+            String txtDeladd = new String(request.getParameter("txtDeladdress").getBytes("iso-8859-1"),"UTF-8");
+            String txtDelstate = new String(request.getParameter("txtDelstate").getBytes("iso-8859-1"),"UTF-8");
+            String txtDelcity = new String(request.getParameter("txtDelcity").getBytes("iso-8859-1"),"UTF-8");
             System.out.println(txtFullname);
             OrdersDTO ordersDTO = new OrdersDTO(txtFullname, txtemail, txtphone, txtadd, txtstate, txtcity, txtDelFullname, txtDelemail, txtDelphone, txtDeladd, txtDelstate, txtDelcity);
             if (cart.getSize() > 0) {
@@ -103,11 +104,24 @@ public class PaymentServlet extends HttpServlet {
                     paramsDetail.add(orderDetail.getPrice().toString());
                     dbapi.insertData(insertOrderDetail, paramsDetail);
                 }
+                payment pay = new payment();
+                pay.setOrderDTO(orderID.toString());
+                boolean result = pay.paymentHNAM();
+                if (result) {
+                    String query = "UPDATE  TBL_Orders SET status = ? WHERE id = ?";
+                    List<String> paramsOrder = new ArrayList<String>();
+                    paramsOrder.add("done");
+                    paramsOrder.add(orderID.toString());
+                    DBAPI dbapi1 = new DBAPI();
+                    dbapi1.updateDB(query, paramsOrder);
+                }
                 System.out.println("done");
             }
             request.setAttribute("orderID", orderID);
             request.setAttribute("Order", ordersDTO);
             request.setAttribute("CartReq", cart);
+            session.setAttribute("OrderPDF", ordersDTO);
+            session.setAttribute("CartReq", cart);
             session.removeAttribute("Cart");
             RequestDispatcher rd = request.getRequestDispatcher("receif.jsp");
             rd.forward(request, response);

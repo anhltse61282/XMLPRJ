@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -76,9 +77,53 @@
                         <c:import url="WEB-INF/productxsl.xsl" var="productxsl" charEncoding="UTF-8"></c:import>
                         <x:transform xml="${requestScope.product}" xslt="${productxsl}"></x:transform>
 
-                    </div>                                                                    
+                        </div>                                                                    
+                    </div>
                 </div>
             </div>
-        </div>
+        <c:set var="relatedItems" value="${requestScope.related}"></c:set>
+        <c:if test="${not empty relatedItems}">
+            <div class="container">
+
+                <div class="rp">
+                    <!-- Recent News Starts -->
+                    <h4 class="title">Có thể bạn quan tâm</h4>
+                    <div class="recent-news block">
+                        <!-- Recent Item -->
+                        <div class="recent-item">
+                            <div class="custom-nav">
+                                <a class="prev"><i class="fa fa-chevron-left br-lblue"></i></a>
+                                <a class="next"><i class="fa fa-chevron-right br-lblue"></i></a>
+                            </div>
+                            <div id="owl-recent" class="owl-carousel">
+                                <!-- Item -->
+                                <c:forEach items="${relatedItems}" var="item">
+                                    <div class="item">
+                                        <c:url var="viewDevice" value="CenterServlet">
+                                            <c:param name="btnAction" value="View"></c:param>
+                                            <c:param name="deviceID" value="${item.id}"></c:param>
+                                            <c:param name="brandID" value="${param.brandID}"></c:param>
+                                            <c:param name="brandName" value="${param.brandName}"></c:param>
+                                            <c:param name="catalogName" value="${param.catalogName}"></c:param>
+                                            <c:param name="catalogId" value="${param.catalogId}"></c:param>
+                                            <c:param name="productName" value="${item.productName}"></c:param>
+                                        </c:url>
+                                        <a href="${viewDevice}"><img src="${item.imageLink}" alt="" class="img-responsive" /></a>
+                                        <!-- Heading -->
+                                        <h4><a href="${viewDevice}">${item.productName} <span class="pull-right"><fmt:formatNumber  pattern="###,###" type="number" value="${item.price}"></fmt:formatNumber>đ</span></a></h4>
+                                        <div class="clearfix"></div>
+                                        <!-- Paragraph -->
+                                    </div>
+                                </c:forEach>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent News Ends -->
+                </div>
+
+            </div>
+        </c:if>
     </body>
 </html>

@@ -14,7 +14,7 @@
     <!-- TODO customize transformation rules 
          syntax recommendation http://www.w3.org/TR/xslt 
     -->
-    <xsl:template>
+    <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
     

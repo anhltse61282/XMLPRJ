@@ -38,13 +38,13 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="password2">SDT:</label>
                                         <div class="controls col-md-4">
-                                            <label>${order.txtemail}</label>
+                                            <label>${order.txtphone}</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="password2">Email:</label>
                                         <div class="controls col-md-4">
-                                            <label>${order.txtphone}</label>
+                                            <label>${order.txtemail}</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -96,7 +96,7 @@
                                     <tfoot>
                                     <form method="GET" action="CenterServlet">
                                         <tr>
-                                            <td colspan="6"> <button class="btn btn-danger" name="btnAction" value="chkOutWthout" type="submit">Xuất hóa đơn ra pdf</button></td>
+                                            <td colspan="6"> <button class="btn btn-danger" name="btnAction" value="exportPDF" type="submit">Xuất hóa đơn ra pdf</button></td>
                                         </tr>
                                     </form>
                                     </tfoot>

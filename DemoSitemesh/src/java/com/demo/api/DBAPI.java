@@ -64,6 +64,47 @@ public class DBAPI {
         }
         return null;
     }
+    public <T> List<T> getTop(String tableName) {
+        Statement statement = null;
+        Connection conn = null;
+        ResultSet resultRS = null;
+
+        // TODO code application logic here
+        conn = DBUtil.makeConnection();
+        if (conn != null) {
+            try {
+                String query = "SELECT TOP 10 * FROM "+tableName+" ORDER BY viewTime DESC ";
+                statement = conn.createStatement();
+                resultRS = statement.executeQuery(query);
+                List<T> result = new ArrayList<T>();
+                while (resultRS.next()) {
+
+                    result.add((T) JDBCTransfer.ResultSettoOBJ(resultRS, tableName));
+                }
+                return result;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    resultRS.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+        return null;
+    }
 
     public int insertData(String query, List<String> param) {
         PreparedStatement statement = null;
@@ -74,7 +115,7 @@ public class DBAPI {
         if (conn != null) {
             try {
                 statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-               
+
                 for (int i = 0; i < param.size(); i++) {
                     statement.setString(i + 1, param.get(i));
                 }
@@ -195,5 +236,41 @@ public class DBAPI {
 
         }
         return null;
+    }
+
+    public void updateDB(String query, List<String> param) {
+        PreparedStatement statement = null;
+        Connection conn = null;
+        
+        // TODO code application logic here
+        conn = DBUtil.makeConnection();
+        if (conn != null) {
+            try {
+                statement = conn.prepareStatement(query);
+
+                for (int i = 0; i < param.size(); i++) {
+                    statement.setString(i + 1, param.get(i));
+                }
+                int rowCount = statement.executeUpdate();      
+                System.out.println("Total " + rowCount + " row update to DB");
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+        
     }
 }

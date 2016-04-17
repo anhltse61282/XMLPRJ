@@ -21,6 +21,14 @@ public class JDBCTransfer {
             return BrandsOBJ.transferRSToOBJ(rs);
         }else if (tablename == "TBL_Products") {
             return ProductOBJ.tranferRStoOBJ(rs);
+        }else if (tablename == "TBL_OrderDetail") {
+            return OrderDetailOBJ.tranferRStoOBJ(rs);
+        }else if (tablename == "TBL_Orders") {
+            return OrderOBJ.tranferRStoOBJ(rs);
+        }else if (tablename == "TBL_Mining") {
+            return MininingOBJ.tranferRStoOBJ(rs);
+        }else if (tablename == "TBL_USERS") {
+            return UsersOBJ.tranferRStoOBJ(rs);
         }
 
         return null;

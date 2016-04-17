@@ -20,11 +20,11 @@
             <div class="container"  id="productDiv">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="title">HOT</h3>
+                        <h3 class="title">Xem Nhiều Nhất</h3>
                     </div>
                     <!-- Item #1 -->
                     <c:set var="countStt" value="0"></c:set>
-                    <c:forEach items="${requestScope.devices}" var="item" begin="${countStt}" end="8">
+                    <c:forEach items="${requestScope.devices}" var="item" >
                         <div class="col-md-3 col-sm-4">
                             <div class="item">
                                 <!-- Item image -->

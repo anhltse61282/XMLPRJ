@@ -8,14 +8,19 @@ package com.demo.servlet;
 import com.assignment.dao.BrandDAO;
 import com.assignment.dao.CatalogDAO;
 import com.assignment.dao.DeviceDAO;
+import com.assignment.dao.RelatedDAO;
 import com.demo.device.Device;
 import com.demo.device.Devices;
 import com.demo.dto.Brands;
 import com.demo.dto.Catalogs;
+import com.demo.dto.MiningDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -52,6 +57,8 @@ public class ViewServlet extends HttpServlet {
             Device device = deviceDAO.searchbyID(deviceID);
             Devices devices = new Devices();
             devices.getDevice().add(device);
+            BigInteger viewTime = device.getViewTime().add(BigInteger.ONE);
+            deviceDAO.updateDevice(viewTime.toString(), deviceID);
             JAXBContext jxbctx = JAXBContext.newInstance("com.demo.device");
             Marshaller marshaller = jxbctx.createMarshaller();
             StringWriter sq = new StringWriter();
@@ -61,9 +68,26 @@ public class ViewServlet extends HttpServlet {
             List<Catalogs> catalog = catalogDAO.getAll();
             BrandDAO brandDAO = new BrandDAO();
             List<Brands> list = brandDAO.getAll();
+            RelatedDAO relatedDAO = new RelatedDAO();
+            List<MiningDTO> relatedItems = relatedDAO.searchbyID(deviceID);
+            List<Device> list1 = new ArrayList<Device>();
+            for (int i = 0; i < relatedItems.size(); i++) {
+                MiningDTO relatedProducts = relatedItems.get(i);
+                String relaedProID = relatedProducts.getRelatedID();
+                StringTokenizer stringTokenizer = new StringTokenizer(relaedProID," ");
+                if(stringTokenizer.hasMoreTokens()){
+                while (stringTokenizer.hasMoreTokens()) {                    
+                    list1.add(deviceDAO.searchbyID(stringTokenizer.nextToken().trim()));
+                }
+                }else{
+                    list1.add(deviceDAO.searchbyID(stringTokenizer.nextToken().trim()));
+                }
+                
+            }
             request.setAttribute("catalogs", catalog);
             request.setAttribute("product", sq.toString());
             request.setAttribute("brands", list);
+            request.setAttribute("related", list1);
             RequestDispatcher rd = request.getRequestDispatcher("view.jsp");
             rd.forward(request, response);
         } catch (JAXBException ex) {

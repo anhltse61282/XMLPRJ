@@ -29,6 +29,8 @@ public class CenterServlet extends HttpServlet {
     private static String checkOutServlet = "CheckOutServlet";
     private static String paymentServlet = "PaymentServlet";
     private static String RegisterServlet = "RegisterServlet";
+    private static String exportServlet = "ExportServlet";
+    private static String loginServlet = "LoginServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,6 +79,12 @@ public class CenterServlet extends HttpServlet {
                 rd.forward(request, response);
             }else if (button.equals("Register")) {
                 RequestDispatcher rd = request.getRequestDispatcher(RegisterServlet);
+                rd.forward(request, response);
+            }else if (button.equals("exportPDF")) {
+                RequestDispatcher rd = request.getRequestDispatcher(exportServlet);
+                rd.forward(request, response);
+            }else if (button.equals("Login")) {
+                RequestDispatcher rd = request.getRequestDispatcher(loginServlet);
                 rd.forward(request, response);
             }
         } finally {

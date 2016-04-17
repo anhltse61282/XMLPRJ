@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://xml.netbeans.org/schema/orders"
+           xmlns="http://xml.netbeans.org/schema/orders"
+           elementFormDefault="qualified">
+    <xs:element name="order">
+        <xs:complexType>
+            <xs:sequence> 
+                <xs:element name="orderdetail" type="OrderDetail" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>      
+            <xs:attribute name="total" type="xs:integer" />
+            <xs:attribute name="date" type="xs:string" />
+            <xs:attribute name="cutomerName" type="xs:string" />
+            <xs:attribute name="customerPhone" type="xs:integer" />
+            <xs:attribute name="delAddress" type="xs:string" />
+            <xs:attribute name="delState" type="xs:string" /> 
+            <xs:attribute name="delCity" type="xs:string" />                  
+        </xs:complexType>
+        
+    </xs:element>
+    <xs:complexType name="OrderDetail">
+        <xs:sequence>
+            <xs:element name="productName" type="xs:string"></xs:element>
+            <xs:element name="quantity" type="xs:integer"></xs:element>
+            <xs:element name="price" type="xs:integer"></xs:element>
+            <xs:element name="total" type="xs:integer"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

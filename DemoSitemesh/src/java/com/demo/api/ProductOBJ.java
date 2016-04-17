@@ -37,6 +37,9 @@ public class ProductOBJ {
             device.setImageLink(rs.getString("imageLink"));
             device.setBrandID(BigInteger.valueOf((rs.getInt("brandID"))));
             device.setCatalogID(BigInteger.valueOf((rs.getInt("catalogID"))));
+            device.setSource(rs.getString("source"));
+            device.setViewTime(BigInteger.valueOf(rs.getInt("viewTime")));
+            device.setOrderLinkLink(rs.getString("purchaseLnk"));
             return (T) device;
         } catch (SQLException ex) {
             Logger.getLogger(ProductOBJ.class.getName()).log(Level.SEVERE, null, ex);

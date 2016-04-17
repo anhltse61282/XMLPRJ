@@ -25,35 +25,36 @@
                         <h5 class="title">Thông tin khách hàng</h5>
                         
                         <!-- Address and Shipping details form -->
-                        <div class="form form-small">
+                        <div class="form form-small" onsubmit="function validateReg()">
                             <!-- Register form (not working)-->
                             
                                 <!-- Name -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="name1">Họ tên:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtFullname">
+                                        <input type="text" class="form-control" name="txtFullname" required="true">
                                     </div>
+                                    <label id='userErr'></label>
                                 </div>   
                                 <!-- Email -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="email1">Email</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtemail1">
+                                        <input type="email" class="form-control" name="txtemail1" required="true">
                                     </div>
                                 </div>
                                 <!-- Telephone -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="telephone">Số điện thoại:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txttelephone">
+                                        <input type="text" class="form-control" name="txttelephone" required="true">
                                     </div>
                                 </div>  
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="address">Địa chỉ:</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" rows="5" name="txtaddress"></textarea>
+                                        <textarea class="form-control" rows="5" name="txtaddress" required="true"></textarea>
                                     </div>
                                 </div>                           
 
@@ -61,14 +62,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="city">Quận/huyện:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtstate">
+                                        <input type="text" class="form-control" name="txtstate" required="true">
                                     </div>
                                 </div>                                               
                                 <!-- City -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="city">Thành phố</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtcity">
+                                        <input type="text" class="form-control" name="txtcity" required="true">
                                     </div>
                                 </div>    
 
@@ -116,28 +117,28 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="name1">Họ tên:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtDelFullname">
+                                        <input type="text" class="form-control" name="txtDelFullname" required="true">
                                     </div>
                                 </div>   
                                 <!-- Email -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="email1">Email</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtDelemail1">
+                                        <input type="email" class="form-control" name="txtDelemail1" required="true" >
                                     </div>
                                 </div>
                                 <!-- Telephone -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="telephone">Số điện thoại:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtDeltelephone">
+                                        <input type="text" class="form-control" name="txtDeltelephone" required="true">
                                     </div>
                                 </div>  
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="address">Địa chỉ:</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" rows="5" name="txtDeladdress"></textarea>
+                                        <textarea class="form-control" rows="5" name="txtDeladdress" required="true"></textarea>
                                     </div>
                                 </div>                           
 
@@ -145,14 +146,14 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="city">Quận/huyện:</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtDelstate">
+                                        <input type="text" class="form-control" name="txtDelstate" required="true">
                                     </div>
                                 </div>                                               
                                 <!-- City -->
                                 <div class="form-group">
                                     <label class="control-label col-md-2" for="city">Thành phố</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="txtDelcity">
+                                        <input type="text" class="form-control" name="txtDelcity" required="true">
                                     </div>
                                 </div>    
 

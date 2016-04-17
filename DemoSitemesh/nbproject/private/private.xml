@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/servlet/AddToCart.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/api/UsersOBJ.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/servlet/CenterServlet.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/web/checkout.jsp</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/mining/Test.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/servlet/PaymentServlet.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/api/OrderOBJ.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/assignment/dao/UserDAO.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/servlet/LoginServlet.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/servlet/CheckOutServlet.java</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/web/resources/js/myjavascript.js</file>
+            <file>file:/G:/FU/XML/XMLPRJ/XMLPRJ/DemoSitemesh/src/java/com/demo/api/JDBCTransfer.java</file>
+        </group>
     </open-files>
 </project-private>

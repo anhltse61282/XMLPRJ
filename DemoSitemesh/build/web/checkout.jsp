@@ -28,35 +28,39 @@
                             <div class="form">
 
                                 <!-- Login  form (not working)-->
-                                <form class="form-horizontal" >                                         
+                                <form class="form-horizontal" method="POST" action="CenterServlet">                                         
                                     <!-- Username -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="username2">Tài khoản</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="username2">
+                                            <input type="text" class="form-control" id="username2" name="txtUsername">
                                         </div>
                                     </div>
                                     <!-- Password -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="password2">Mật Khẩu</label>
                                         <div class="controls col-md-8">
-                                            <input type="password" class="form-control" id="password2">
+                                            <input type="password" class="form-control" id="password2" name="txtPassword">
                                         </div>
                                     </div>
-                                   
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-3">
+                                            <label class="checkbox-inline">
+                                                ${requestScope.logErr}
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <!-- Buttons -->
                                     <div class="form-group">
                                         <!-- Buttons -->
                                         <div class="col-md-8 col-md-offset-3">
-                                            <button type="submit" class="btn btn-danger">Đăng nhập</button>
+                                            <button type="submit" class="btn btn-danger" value="Login" name="btnAction">Đăng nhập</button>
                                             <button type="reset" class="btn btn-default">Reset</button>
                                         </div>
                                     </div>
                                 </form>
-                                <hr>
-                                <h5>New Account</h5>
-                                Don't have an Account? <a href="register.html">Register</a>
+                                
                             </div> 
                         </div>
 
@@ -93,15 +97,15 @@
 
 
                                         </c:forEach>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Tổng cộng:</th>
-                                                <th><fmt:formatNumber  pattern="###,###" type="number" value="${sessionScope.Cart.total}"></fmt:formatNumber>VND</th>
-                                                <th></th>
-                                                
-                                            </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Tổng cộng:</th>
+                                            <th><fmt:formatNumber  pattern="###,###" type="number" value="${sessionScope.Cart.total}"></fmt:formatNumber>VND</th>
+                                            <th></th>
+
+                                        </tr>
                                     </tbody>
                                     <tfoot>
                                     <form method="GET" action="CenterServlet">

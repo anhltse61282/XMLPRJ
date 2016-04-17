@@ -48,7 +48,7 @@ public class LoadServlet extends HttpServlet {
             BrandDAO brandDAO = new BrandDAO();
             List<Brands> list = brandDAO.getAll();
             DeviceDAO deviceDAO = new DeviceDAO();
-            List<Device> deviceLst = deviceDAO.getAll();
+            List<Device> deviceLst = deviceDAO.getTop();
             request.setAttribute("catalogs", result);
             request.setAttribute("brands", list);
             request.setAttribute("devices", deviceLst);
