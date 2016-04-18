@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://xml.netbeans.org/schema/products"
+           xmlns ="http://xml.netbeans.org/schema/products"
+           elementFormDefault="qualified">
+    <xs:element name="Devices">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="device" type="Device" maxOccurs="unbounded"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Device">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"></xs:element>
+            <xs:element name="productName" type="xs:string"></xs:element>
+            <xs:element name="monitor" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="memory" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="memorycard" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="maincamera" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="subCamera" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="os" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="chipset" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="chipName" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="color" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="battery" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="price" type="xs:positiveInteger" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="catalogID" type="xs:integer" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="brandID" type="xs:integer" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="imageLink" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="orderLinkLink" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="status" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="viewTime" type="xs:integer" nillable="true" minOccurs="0"></xs:element>
+            <xs:element name="source" type="xs:string" nillable="true" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
